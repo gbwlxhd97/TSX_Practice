@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React, { Component } from 'react';
+import Number from "./Number";
+type IState = {
+  counter : number;
+}
+//  interface IState {
+//    counter: number;
+//  }
+class App extends Component<{},IState> { //인터페이스든 타입 엘리어스든 둘다 가능함.
+  state = {
+    counter: 0
+  };
+  render() {
+    const {counter} = this.state;
+    return (
+      <div>
+        <Number count= {counter}/> <button onClick={this.add}>Add</button>
+      </div>
+    )
+  }
+add = () => {
+  this.setState(prev => {
+    return {
+      counter : prev.counter +1
+    }
+  })
+}
 }
 
 export default App;
